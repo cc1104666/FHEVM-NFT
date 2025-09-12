@@ -9,7 +9,7 @@ interface NetworkWarningProps {
 export const NetworkWarning: React.FC<NetworkWarningProps> = ({
   currentChainId,
   expectedChainId,
-  onSwitchNetwork,
+  onSwitchNetwork: _onSwitchNetwork,
 }) => {
   if (currentChainId === expectedChainId) {
     return null;

@@ -108,6 +108,7 @@ export const usePrivateNFT = (parameters: {
   const [isMinting, setIsMinting] = useState<boolean>(false);
   const [isDecrypting, setIsDecrypting] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
+  const [hasLoadedOnce, setHasLoadedOnce] = useState<boolean>(false);
 
   // Refs for latest values
   const contractRef = useRef<PrivateNFTInfoType | undefined>(undefined);
@@ -141,8 +142,8 @@ export const usePrivateNFT = (parameters: {
   }, [privateNFT.address, instance, ethersSigner, isMinting]);
 
   const canLoadNFTs = useMemo(() => {
-    return privateNFT.address && ethersReadonlyProvider && ethersSigner && !isLoading;
-  }, [privateNFT.address, ethersReadonlyProvider, ethersSigner, isLoading]);
+    return privateNFT.address && ethersReadonlyProvider && ethersSigner;
+  }, [privateNFT.address, ethersReadonlyProvider, ethersSigner]);
 
   const canDecrypt = useMemo(() => {
     return privateNFT.address && instance && ethersSigner && !isDecrypting;
@@ -198,6 +199,7 @@ export const usePrivateNFT = (parameters: {
       setOwnedTokens(tokenIdsArray);
       setTokenPublicData(newPublicData);
       setTotalSupply(Number(supply));
+      setHasLoadedOnce(true);
       setMessage(`Loaded ${tokenIdsArray.length} NFTs`);
 
     } catch (error) {
@@ -261,7 +263,8 @@ export const usePrivateNFT = (parameters: {
 
       setMessage(`NFT minted successfully! Gas used: ${receipt?.gasUsed}`);
       
-      // Reload NFTs
+      // Reset flag and reload NFTs
+      setHasLoadedOnce(false);
       await loadOwnedNFTs();
 
     } catch (error) {
@@ -356,12 +359,12 @@ export const usePrivateNFT = (parameters: {
     }
   }, [instance, ethersSigner, ethersReadonlyProvider, fhevmDecryptionSignatureStorage, decryptedPrivateData]);
 
-  // Auto-load NFTs when contract is available
+  // Auto-load NFTs when contract is available (only once)
   useEffect(() => {
-    if (canLoadNFTs) {
+    if (canLoadNFTs && !hasLoadedOnce && !isLoadingRef.current) {
       loadOwnedNFTs();
     }
-  }, [canLoadNFTs, loadOwnedNFTs]);
+  }, [canLoadNFTs, hasLoadedOnce]); // Load only once when conditions are met
 
   return {
     // Contract info

@@ -11,6 +11,6 @@
   ],
   "scripts": {
     "preinstall": "node ./scripts/preinstall.mjs",
-    "postinstall": "cd ./packages/site/ && npm run genabi"
+    "postinstall": "if [ \"$SKIP_ABI_GENERATION\" != \"true\" ]; then cd ./packages/site/ && npm run genabi; else echo 'Skipping ABI generation during Docker build'; fi"
   }
 }

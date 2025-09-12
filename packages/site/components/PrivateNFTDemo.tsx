@@ -8,6 +8,7 @@ import { usePrivateNFT } from "@/hooks/usePrivateNFT";
 import { NFTMintingForm } from "./NFTMintingForm";
 import { NFTGallery } from "./NFTGallery";
 import { NetworkWarning } from "./NetworkWarning";
+import { AutoNetworkSwitch } from "./AutoNetworkSwitch";
 import { errorNotDeployed } from "./ErrorNotDeployed";
 
 export const PrivateNFTDemo = () => {
@@ -126,6 +127,7 @@ export const PrivateNFTDemo = () => {
     );
   }
 
+
   // Deployment check
   if (privateNFT.isDeployed === false) {
     return errorNotDeployed(chainId);
@@ -133,10 +135,17 @@ export const PrivateNFTDemo = () => {
 
   return (
     <div className="grid w-full gap-6">
+      {/* Auto Network Switch */}
+      <AutoNetworkSwitch
+        currentChainId={chainId}
+        expectedChainId={11155111}
+        provider={provider}
+      />
+      
       {/* Network Warning */}
       <NetworkWarning 
         currentChainId={chainId} 
-        expectedChainId={31337}
+        expectedChainId={11155111}
       />
 
       {/* Header */}
@@ -189,16 +198,6 @@ export const PrivateNFTDemo = () => {
         </div>
       </div>
 
-      {/* Operation Status */}
-      <div className="col-span-full mx-4 lg:mx-20 bg-white rounded-xl shadow-lg border border-gray-200 p-6">
-        <p className={titleClass}>⚡ Operation Status</p>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
-          {printProperty("Loading NFTs", privateNFT.isLoading)}
-          {printProperty("Minting", privateNFT.isMinting)}
-          {printProperty("Decrypting", privateNFT.isDecrypting)}
-          {printProperty("Can Mint", privateNFT.canMint)}
-        </div>
-      </div>
 
       {/* Tab Navigation */}
       <div className="col-span-full mx-4 lg:mx-20">

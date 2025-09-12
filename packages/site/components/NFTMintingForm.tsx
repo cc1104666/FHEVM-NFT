@@ -56,7 +56,7 @@ export const NFTMintingForm: React.FC<NFTMintingFormProps> = ({
 
   const presetImages = [
     "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&q=80", // Dragon
-    "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&q=80", // Sword
+    "https://images.unsplash.com/photo-1432821596592-e2c18b78144f?w=400&q=80", // Sword
     "https://images.unsplash.com/photo-1578269174936-2709b6aeb913?w=400&q=80", // Crystal
     "https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=400&q=80", // Shield
     "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&q=80", // Magic

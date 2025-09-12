@@ -154,7 +154,7 @@ const NFTCard: React.FC<NFTCardProps> = ({
                 🔐 Private attributes are encrypted
               </div>
               <div className="text-gray-300 text-xs mt-1">
-                Click "Decrypt" to reveal hidden stats
+                Click &quot;Decrypt&quot; to reveal hidden stats
               </div>
             </div>
           )}
@@ -205,7 +205,7 @@ export const NFTGallery: React.FC<NFTGalleryProps> = ({
         <div className="text-gray-400 text-lg mb-4">🎨</div>
         <h3 className="text-lg font-semibold text-gray-700 mb-2">No NFTs Found</h3>
         <p className="text-gray-500 mb-4">
-          You don't own any NFTs yet. Start by minting your first private NFT!
+          You don&apos;t own any NFTs yet. Start by minting your first private NFT!
         </p>
         <button
           onClick={onRefresh}
