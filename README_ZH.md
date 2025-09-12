@@ -1,6 +1,6 @@
 # 🎨 Private NFT Marketplace - FHEVM Demo
 
-*[English Version / 英文版本](./NFT_APP_README_EN.md)*
+*[English Version / 英文版本](./README.md)*
 
 一个基于 FHEVM (Fully Homomorphic Encryption Virtual Machine) 技术的隐私保护 NFT 铸造和管理应用。
 
@@ -195,3 +195,4 @@ BSD-3-Clause-Clear License
 **这个项目展示了如何使用 FHEVM 技术构建隐私保护的 Web3 应用，为用户提供真正的数据隐私保护。**
 
 *[English Version / 英文版本](./NFT_APP_README_EN.md)*
+
